@@ -1,10 +1,13 @@
 import requests
 import json
 
+# This short program is a simple command line python application that takes the name of a city and prints out the current weather of the city
+# It uses an API from http://openweathermap.org/
+
 api_key = '92f135e73e13bdd8f59b57347820f8af'
 
 def get_weather(city):
-	r = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+city+'&appid='+api_key)
+	r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + api_key)
 	weather_info = r.json()
 	return weather_info
 

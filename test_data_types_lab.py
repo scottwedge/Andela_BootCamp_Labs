@@ -3,7 +3,7 @@ from data_types_lab import data_type
 
 
 
-class DataTypeTestCase(TestCase):
+class DataTypeTestCase(unittest.TestCase):
 
   def test_none_type(self):
     self.assertEqual('no value', data_type(None))

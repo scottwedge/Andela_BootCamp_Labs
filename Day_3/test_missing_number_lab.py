@@ -1,7 +1,7 @@
 import unittest
 from missing_number_lab import find_missing
 
-class MissingNumberTest(TestCase):
+class MissingNumberTest(unittest.TestCase):
     """docstring for MissingNumberTest"""
 
     def test_empty_list(self):

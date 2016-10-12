@@ -1,7 +1,7 @@
 import unittest
 from binary_search_lab import BinarySearch
 
-class ListComprehensionTest(TestCase):
+class ListComprehensionTest(unittest.TestCase):
 
     """Binary Search to traverse an ordered list, effectively
        Populate the arrays with valid content
@@ -67,7 +67,7 @@ class ListComprehensionTest(TestCase):
                 )
 
 
-class BinarySearchTest(TestCase):
+class BinarySearchTest(unittest.TestCase):
 
     """Get the index of the item with an expected number of loops in\
      array [1, 2 . . . 20]
@@ -107,9 +107,9 @@ class BinarySearchTest(TestCase):
             msg='should return {count: 4, index: 7} for 16'
         )
         self.assertEqual(
-            0,
+            5,
             search2['count'],
-            msg='should return {count: 0, index: 19} for 40'
+            msg='should return {count: 5, index: 19} for 40'
         )
         self.assertEqual(
             19,

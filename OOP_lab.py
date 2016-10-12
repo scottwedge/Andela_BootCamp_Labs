@@ -29,10 +29,13 @@ class MobilePhone(Telephone):
 	def add_num_to_phonebook(self, name, num):
 		if num in self.phone_book.values():
 			print (str(num) + ' is already in the phone book')
+			return False
 		else:
+			self.phone_book.update({name:num})
 			print (str(num) + ' saved in the phonebook under the name ' + name)
+			return True
 
-class Smartphone(MobilePhone):
+class SmartPhone(MobilePhone):
 	"""docstring for Smartphone"""
 	def __init__(self, manufacturer, model):
 		self.manufacturer = manufacturer

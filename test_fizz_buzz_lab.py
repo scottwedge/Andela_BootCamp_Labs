@@ -1,7 +1,7 @@
 import unittest
 from fizz_buzz_lab import fizz_buzz
 
-class FizzBuzzClassTest(TestCase):
+class FizzBuzzClassTest(unittest.TestCase):
     """docstring for FizzBuzz"""
 
     def test_fizz_1(self):

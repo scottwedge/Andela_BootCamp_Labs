@@ -1,7 +1,7 @@
 import unittest
 from word_count_lab import words
 
-class MissingNumberTest(TestCase):
+class MissingNumberTest(unittest.TestCase):
     """docstring for MissingNumberTest"""
 
     def test_empty_list(self):

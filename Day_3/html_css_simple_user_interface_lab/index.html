@@ -1,9 +1,170 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+<html lang="en">
 
+<head>
+    <title>CSS Mint Components</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="stylesheet" href="build/css-mint.min.css">
+    <style>
+    .grid *[class*='col-span'] > div {
+        color: #fff;
+        background-color: #5C9DED;
+        margin: 5px;
+        padding: 7px;
+        font-weight: 300;
+    }
+    </style>
+</head>
+
+<body style="padding: 30px 30px 50px;">
+<!-- Header -->
+    <img src="img/andela-logo.png" style="width: 500px; height: auto; margin-bottom: 50px;"/>
+    <hr/>
+    <h3><strong>Front End Lab</strong></h3>
+    <header class="header">
+        <div class="logo">
+            <a href="#"><h1>Simple User Interface</h1></a>
+        </div>
+        <div class="nav-right">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Header -->
+    <!-- Panel -->
+    <h5 style="margin-top: 50px; float: left;">Objective</h5>
+    <div class="panel" style="width: 100%;">
+        #1: GitHub repo containing a clone of a simple user interface created using HTML and CSS.
+    </div>
+    <h5 style="margin-top: 50px; float: left;">End Result</h5>
+    <div class="panel" style="width: 100%;">
+       So I've created a simple test site with a lover template from CSS-Mint. Note that all links have been disabled
+    </div>
+
+    <!-- The Grid -->
+    <h5 style="margin-top: 50px; float: left;">Categories</h5>
+    <div style="width: 80%;" class="grid">
+        <div class="gr-row align-center">
+            <div class="col-span-1">
+                <div>Exotic</div>
+            </div>
+            <div class="col-span-1">
+                <div>Tuner</div>
+            </div>
+            <div class="col-span-1">
+                <div>Off-Road</div>
+            </div>
+            <div class="col-span-1">
+                <div>Muscle</div>
+            </div>
+            <div class="col-span-1">
+                <div>Classic</div>
+            </div>
+            <div class="col-span-1">
+                <div>Commercial</div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div>
+        <div style="width: 30%;" class="grid" >
+            <div class="card photo">
+                <img src="http://freedesignfile.com/upload/2012/06/41.jpg"/>
+                <div class="card-content">
+                    <ul>
+                        <li>Model: Ferrari</li>
+                        <li>Type: Exotic</li>
+                        <li>Horse Power: A lot more than you need</li>
+                        <li>Top speed: Too fast for Kenyan roads</li>
+                        <li>Price: How many zeros are in your bank account?</li>
+                    </ul>
+                    
+
+                    <div class="align-center">
+                        <button class="ease-in-out">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 30%;">
+            <div class="card photo">
+                <img src="http://img.phombo.com/img1/photocombo/6150/80_Vector_Cars_Wallpapers_HD__1920x1200__www.HQPictures.tk-3.jpg_Vector_Cars_69.jpg"/>
+                <div class="card-content">
+                    <ul>
+                        <li>Model: Toyota Rav4</li>
+                        <li>Type: Off-road</li>
+                        <li>Horse Power: Just enough to get you 'off the road'</li>
+                        <li>Top speed: Meh</li>
+                        <li>Price: Reasonable</li>
+                    </ul>
+                    
+                    
+
+                    <div class="align-center">
+                        <button class="ease-in-out">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- Pagination -->
+    
+    <ul class="pagination">
+        <li class="prev">
+            <a href="#">Prev</a>
+        </li>
+        <li class="active">
+            <a href="#">1</a>
+        </li>
+        <li>
+            <a href="#">2</a>
+        </li>
+        <li>
+            <a href="#">3</a>
+        </li>
+        <li>
+            <a href="#">4</a>
+        </li>
+        <li>
+            <a href="#">5</a>
+        </li>
+        <li>
+            <a href="#">6</a>
+        </li>
+        <li>
+            <a href="#">7</a>
+        </li>
+        <li>
+            <a href="#">8</a>
+        </li>
+        <li>
+            <a href="#">9</a>
+        </li>
+        <li class="next">
+            <a href="#">Next</a>
+        </li>
+    </ul>
+    <!-- Pagination -->
+
+
+        <!-- Footer -->
+    <h5 style="margin-top: 50px;">End of Trail Page</h5>
+    <footer class="footer">
+        <div class="footer-container">
+            End &copy;Andela Lab 2016
+        </div>
+    </footer>
+    
 </body>
-</html>

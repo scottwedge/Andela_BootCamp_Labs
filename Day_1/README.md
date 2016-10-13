@@ -33,3 +33,7 @@ Define a function called data_type, to take one argument. Compare and return res
 Create a function fizz_buzz to return `'Fizz'`, `'Buzz'`, `'FizzBuzz'`, or the argument it receives, all depending on the argument of the function, a number that is divisible by, 3, 5, or both 3 and 5, respectively.
 
 When the number is not divisible by 3 or 5, the number itself should be returned.
+
+### OOP_lab
+##### Instructions
+GitHub repo containing a real-world problem modeled using OOP while taking advantage of inheritance, encapsulation, polymorphism and the other OOP concepts.

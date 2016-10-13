@@ -851,10 +851,12 @@ blockquote {
 
 .card.photo {
     padding: 0;
+
 }
 
 .card.photo > .card-content {
     padding: 10px;
+    background-color: #84a5ff;
 }
 
 .card.photo > .card-content button {

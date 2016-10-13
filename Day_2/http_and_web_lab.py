@@ -18,9 +18,9 @@ while True:
 	else:
 		city_weather = get_weather(desired_city)
 		if city_weather['name'].lower() == desired_city.lower():
-			print ('\nThe weather in ' + city_weather['name'] + ' is currently: ' + city_weather['weather'][0]['description'])
-			print ('Here is some more information on '+ city_weather['name'] + ' (Powered by openweathermaps.org')
-			print ('Temperature (in Celsius): ' + str(city_weather['main']['temp'] - 273))
+			print ('\nThe weather in ' + city_weather['name'] + ', ' + city_weather['sys']['country'] + ' is currently: ' + city_weather['weather'][0]['description'])
+			print ('Here is some more information on '+ city_weather['name'] + ' (Powered by openweathermaps.org)')
+			print ('Temperature (in Celsius): ' + str(int(city_weather['main']['temp'] - 273 )))
 			print ('Humidity: ' + str(city_weather['main']['humidity']))
 			print ('Pressure: ' + str(city_weather['main']['pressure']))
 			print ()

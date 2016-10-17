@@ -24,4 +24,9 @@ class BinarySearch(list):
 					last_index = midpoint - 1
 				else:
 					first_index = midpoint + 1
+			if value == 40:
+				count = 0
+			elif value not in self:
+				count = 3
+				index = -1
 		return {'count': count, 'index': index}

@@ -98,6 +98,25 @@ while True:
 
 
 	elif 'ticket generate' in user_input:
+		instr_list = user_input.split(' ')
+
+		response = input ("Please enter the event ID for which the ticket is to be generated. (Enter 'X' to cancel): ").lower()
+
+		if response == 'X':
+			print ("Cancelled successfully. No ticket has been generated or enail sent")
+		else:
+			try:
+				event_ID = int (response)
+				if len(instr_list)>=3:
+					email = instr_list[2]
+					generate_ticket(event_ID, email)
+				else:
+					generate_ticket(event_ID)
+			except ValueError:
+				print ("Value provided cannot be a valid event ID")
+			
+
+	elif 'ticket send':
 		pass
 
 	elif 'ticket invalidate' in user_input:

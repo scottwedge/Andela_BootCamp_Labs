@@ -32,8 +32,11 @@ def view_all_events():
 	c.execute("SELECT * FROM events")
 	events_data = c.fetchall()
 	print('Event ID\tName\t\t\tStart Date\tEnd Date\tVenue')
-	for row in events_data:		
-		print(str(row[0]) + '\t\t' + row[1] + '\t\t' + row[2] + '\t' + row[3] + '\t' + row[4])
+	for row in events_data:
+		if len(row[1])>15:
+			print(str(row[0]) + '\t\t' + row[1] + '\t' + row[2] + '\t' + row[3] + '\t' + row[4])
+		else:		
+			print(str(row[0]) + '\t\t' + row[1] + '\t\t' + row[2] + '\t' + row[3] + '\t' + row[4])
 
 	return True
 		
@@ -108,3 +111,4 @@ def delete_event (event_ID):
 
 		else:
 			print ("Event not deleted")
+

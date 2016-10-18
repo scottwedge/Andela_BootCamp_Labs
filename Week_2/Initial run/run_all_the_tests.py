@@ -1,14 +1,16 @@
 from create_event import create_event
 from view_all_events import view_all_events
 from edit_event import edit_event
+from delete_event import delete_event
 import sqlite3
 
 conn = sqlite3.connect('dummy_data.db')
 c = conn.cursor()
 
 
+delete_event(int(input('Delete event ID:')))
 
-view_all_events()
+#view_all_events()
 
 #edit_event(int(input('Event ID:')))
 

@@ -18,8 +18,8 @@ def create_event(name, start_date, end_date, venue):
 			(name, start_date, end_date, venue))
 		conn.commit()
 		print ('''The following event has been added to the database
-			Name: %s
-			Start Date: %s
-			End Date: %s
-			Venue: %s''' %(name, start_date, end_date, venue))
+			Name: 			%s
+			Start Date: 	%s
+			End Date: 		%s
+			Venue: 			%s''' %(name, start_date, end_date, venue))
 		return True

@@ -90,8 +90,15 @@ def delete_event (event_ID):
 
 
 	else:
-		print (str(data))
-		user_response = input("Do you want to delete the following event? Enter 'Y' to delete or any other key to cancel this deletion: ").lower()
+		for item in data:
+			print ("Event ID:\t\t" + str(item [0]))
+			print ("Event name:\t\t" + item [1])
+			print ("Event Start Date:\t" + item [2])
+			print ("Event End Date:\t\t" + item [3])
+			print ("Event Venue:\t\t" + item [4])
+
+		
+		user_response = input("\nDo you want to delete the following event? Enter 'Y' to delete or any other key to cancel this deletion: ").lower()
 		
 		# Checks users response to confirm deletion
 		if user_response == 'y':

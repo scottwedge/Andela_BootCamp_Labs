@@ -6,6 +6,7 @@ c = conn.cursor()
 def delete_event (event_ID):
 	c.execute("SELECT * FROM events WHERE event_ID = ?", (int(event_ID),))
 	data = c.fetchall()
+	
 
 	if len(data) == 0:
 		print ("There no event with event ID " + str(event_ID))

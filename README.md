@@ -7,7 +7,7 @@ This is a repository for all the labs and tests written for the Andela Cohort X 
 
 ### Requirements
 
-No special requirements. You can run the python files using idle.
+No special requirements. You can run the python files using idle. Note that all the files are written for Python 3.x and above.
 
 ### Configuration
 

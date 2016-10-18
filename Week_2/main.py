@@ -53,7 +53,23 @@ while True:
 
 
 	elif 'event delete' in user_input:
-		pass
+		instr_list = user_input.split(' ')
+		if len(instr_list)>=3:
+			event_ID = instr_list[2]
+			try:
+				delete_event(int(event_ID))
+			except ValueError:
+				print ("Sorry. Value provided after 'event delete' not a valid event ID")
+		else:
+			print ('Could not find event ID instruction to delete')
+			response = input ("Please enter event ID. Or type 'X' to cancel: ").lower()
+			if response == 'x':
+				print ("Event deletion successfully cancelled")
+			else:
+				try:
+					delete_event(int(response))
+				except ValueError:
+					print ("Sorry. That value can not be used as an event ID")
 
 
 	elif 'event list' in user_input:

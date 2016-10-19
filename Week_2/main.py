@@ -1,13 +1,19 @@
+#! python3
+
 from event_functions import create_event, view_all_events, edit_event, delete_event
 from instructions import print_instructions
 from ticket_functions import generate_ticket, view_tickets_for_event, invalidate_ticket
 from ascii_pics import intro_pic, outro_pic
+import colorama
 import sqlite3
+
+colorama.init()
 
 conn = sqlite3.connect('dummy_data.db')
 c = conn.cursor()
 
-print("Welcome to the Ticket Booking System")
+print(colorama.Fore.GREEN, colorama.Back.WHITE +"\t\t\t\t\tWelcome to the Ticket Booking Service\t\t\t\t\t")
+print(colorama.Style.RESET_ALL)
 intro_pic()
 
 
@@ -116,7 +122,7 @@ while True:
 				print ("Value provided cannot be a valid event ID")
 			
 
-	elif 'ticket send':
+	elif 'ticket send' in user_input:
 		pass
 
 	elif 'ticket invalidate' in user_input:
@@ -142,7 +148,7 @@ while True:
 		print ("Sorry. That instruction could not be understood")
 
 conn.close()
-c.close()
 print("Exiting. Thank you for using the ticketing app")
-#outro_pic()
+colorama.deinit()
+outro_pic()
 

@@ -1,4 +1,5 @@
 import sqlite3, time, datetime
+from send_email import send_initial_email
 
 conn = sqlite3.connect('dummy_data.db')
 c = conn.cursor()
@@ -10,6 +11,7 @@ def generate_ticket(event_ID, email_address='NULL'):
 	data = c.fetchall()
 	if len(data) == 0:
 		print ("No event with such an ID exits in the events table. Exiting... ")
+	
 	else:
 
 		# Checks if no email has been input and gives user a second chance
@@ -30,29 +32,24 @@ def generate_ticket(event_ID, email_address='NULL'):
 
 		# Printing out data that was added
 		c.execute ("SELECT * FROM tickets WHERE ticket_ID = (SELECT MAX(ticket_ID) FROM tickets)")
-		ticket_data = c.fetchall()
-		for item in ticket_data:
-			print ("Ticket ID:\t\t" + str(item [0]))
-			print ("Event ID:\t\t" + str(item [1]))
-			print ("Email Address:\t" + item [2])
-			if item [3] == 1:
-				print ("Ticket Status:\t\tValid")
-			elif item [3] == 0:
-				print ("Ticket Status:\t\tInvalid")
-			else:
-				print ("Ticket Status:\t\t" + item [3])
-			print ("Time of creation: " + datetime.datetime.fromtimestamp(item [4]).strftime('%d-%m-%Y %H:%M'))
+		ticket_data = c.fetchone()
+		ticket_ID = ticket_data[0]
+		print ("Ticket ID:\t\t" + str(ticket_data [0]))
+		print ("Event ID:\t\t" + str(ticket_data [1]))
+		print ("Email Address:\t" + ticket_data [2])
+		if ticket_data [3] == 1:
+			print ("Ticket Status:\t\tValid")
+		elif ticket_data [3] == 0:
+			print ("Ticket Status:\t\tInvalid")
+		else:
+			print ("Ticket Status:\t\t" + ticket_data [3])
+		print ("Time of creation: " + datetime.datetime.fromtimestamp(ticket_data [4]).strftime('%d-%m-%Y %H:%M'))
 
 		# Add email code 
-
-
-
-
-
-
-
-
-
+		if email_address != 'NULL':
+			print("Sending email...")
+			send_initial_email(email_address, ticket_ID)
+			print ("Email sent to " + email_address + " from simpleticketservice@gmail.com")
 
 
 

@@ -1,9 +1,9 @@
-#! python3
-
-from event_functions import create_event, view_all_events, edit_event, delete_event
 from instructions import print_instructions
+from event_functions import create_event, view_all_events, edit_event, delete_event
 from ticket_functions import generate_ticket, view_tickets_for_event, invalidate_ticket
 from ascii_pics import intro_pic, outro_pic
+from unix_time_conversions import unix_to_readable, readable_to_unix
+from send_email import send_initial_email
 import colorama
 import sqlite3
 
@@ -12,12 +12,13 @@ colorama.init()
 conn = sqlite3.connect('dummy_data.db')
 c = conn.cursor()
 
-print(colorama.Fore.GREEN, colorama.Back.WHITE +"\t\t\t\t\tWelcome to the Ticket Booking Service\t\t\t\t\t")
+print(colorama.Fore.GREEN, colorama.Back.WHITE +"\t\t\t\t\t\tWelcome to the Ticket Booking Service\t\t\t\t\t")
 print(colorama.Style.RESET_ALL)
 intro_pic()
 
 
 while True:
+
 	user_input = input ("\nWhat would you like to do? For a list of available instructions, type 'instr': ").lower()
 
 	if user_input == 'cancel':
@@ -32,9 +33,17 @@ while True:
 			print ('Event creation cancelled successfully')
 		else:
 			name = input ('Event name: ')
-			start_date = input ('Start Date(format DD-MM-YYYY): ')
-			end_date = input ('End Date(format DD-MM-YYYY): ')
 			venue = input ('Venue: ')
+			start_date = readable_to_unix (input ('Start Date(format DD-MM-YYYY): '))
+			end_date = readable_to_unix(input ('End Date(format DD-MM-YYYY): '))
+			# Checking dates make sense
+			while True:
+				if end_date > start_date:
+					break
+				else:
+					end_date = readable_to_unix( input("End date cannot be before start date. Please enter another end date: "))
+			
+			# Going to create function to create data using user data			
 			create_event(name, start_date, end_date, venue)
 				
 
@@ -123,7 +132,33 @@ while True:
 			
 
 	elif 'ticket send' in user_input:
-		pass
+		instr_list = user_input.split(' ')
+		# Checks if all the arguments were input
+		if len (instr_list) >= 4:
+			ticket_ID = instr_list[2]
+			email_address = instr_list[3]
+		else:
+			print ("You have not input the required number of fields for this command")
+			# Checks that the ticket ID is a number
+			while True:
+				try:
+					ticket_ID = int(input ("Please input a ticket ID: "))
+					break
+				except ValueError:
+					print ("The ticket ID must be a number.")
+			email_address = input ("Please input email address: ")
+
+		print ("Trying to send email...")
+		email_sent = send_initial_email(email_address, ticket_ID)
+
+		if email_sent == True:
+			# Checks if user wants to update ticket with new email address if email is sent successfully
+			response = input ("Do you want to update this ticket ID " + ticket_ID + " with this new email(" + email_address+ ")?\n\
+				Type 'Y' if you want to update or any other key to cancel: ").lower()
+			if response == 'y':
+				c.execute("UPDATE events SET email_address = ? WHERE ticket_ID = ?", (email_address, ticket_ID))
+				print ("Ticket updated")
+
 
 	elif 'ticket invalidate' in user_input:
 		instr_list = user_input.split(' ')
@@ -145,7 +180,8 @@ while True:
 					print ("Sorry. That value can not be used as an ticket ID")
 
 	else:
-		print ("Sorry. That instruction could not be understood")
+		print(colorama.Fore.RED, colorama.Back.YELLOW + "Sorry, that instruction could not be understood. Please try again")
+		print(colorama.Style.RESET_ALL)
 
 conn.close()
 print("Exiting. Thank you for using the ticketing app")

@@ -36,16 +36,16 @@ def generate_ticket(event_ID, email_address='NULL'):
 		ticket_ID = ticket_data[0]
 		print ("Ticket ID:\t\t" + str(ticket_data [0]))
 		print ("Event ID:\t\t" + str(ticket_data [1]))
-		print ("Email Address:\t" + ticket_data [2])
+		print ("Email Address:\t\t" + ticket_data [2])
 		if ticket_data [3] == 1:
 			print ("Ticket Status:\t\tValid")
 		elif ticket_data [3] == 0:
 			print ("Ticket Status:\t\tInvalid")
 		else:
 			print ("Ticket Status:\t\t" + ticket_data [3])
-		print ("Time of creation: " + datetime.datetime.fromtimestamp(ticket_data [4]).strftime('%d-%m-%Y %H:%M'))
+		print ("Time of creation:\t\t" + datetime.datetime.fromtimestamp(ticket_data [4]).strftime('%d-%m-%Y %H:%M'))
 
-		# Add email code 
+		# Emailling if there is a valid email provided 
 		if email_address != 'NULL':
 			print("Sending email...")
 			send_initial_email(email_address, ticket_ID)
@@ -56,19 +56,24 @@ def generate_ticket(event_ID, email_address='NULL'):
 def view_tickets_for_event(event_ID):
 	c.execute("SELECT * FROM tickets WHERE event_ID = ?", (event_ID,))
 	data = c.fetchall()
-	
-	for row in data:
-		print ("Ticket ID:\t\t" + str(row [0]))
-		print ("Event ID:\t\t" + str(row [1]))
-		print ("Email Address:\t\t" + row [2])
-		if row [3] == 1:
-			print ("Ticket Status:\t\tValid")
-		elif row [3] == 0:
-			print ("Ticket Status:\t\tInvalid")
-		else:
-			print ("Ticket Status:\t\t" + row [3])
-		print ("Time of creation:\t" + datetime.datetime.fromtimestamp(int(row [4])).strftime('%d-%m-%Y %H:%M'))
-		print(50*'*')
+
+	# Checks if any data is in the DB for that event ID
+	if len (data) == 0:
+		print ("There are no tickets with for event with event ID " + str(event_ID))
+
+	else:	
+		for row in data:
+			print ("Ticket ID:\t\t" + str(row [0]))
+			print ("Event ID:\t\t" + str(row [1]))
+			print ("Email Address:\t\t" + row [2])
+			if row [3] == 1:
+				print ("Ticket Status:\t\tValid")
+			elif row [3] == 0:
+				print ("Ticket Status:\t\tInvalid")
+			else:
+				print ("Ticket Status:\t\t" + row [3])
+			print ("Time of creation:\t" + datetime.datetime.fromtimestamp(int(row [4])).strftime('%d-%m-%Y %H:%M'))
+			print(50*'*')
 
 
 

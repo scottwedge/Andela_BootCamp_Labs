@@ -1,5 +1,6 @@
 
 import email, smtplib, sqlite3, time, datetime
+from unix_time_conversions import unix_to_readable, readable_to_unix
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -9,7 +10,7 @@ c = conn.cursor()
  
  
 def send_initial_email(email_address, ticket_ID):
-
+	ticket_ID = int(ticket_ID)
 	#Getting data from the database
 	# Ticket Table
 	c.execute ("SELECT * FROM tickets WHERE ticket_ID = ?", (ticket_ID,))
@@ -35,6 +36,7 @@ def send_initial_email(email_address, ticket_ID):
 	# Checking if ticket is valid
 	if ticket_status == 'Invalid':
 		print ("The ticket with this ticket ID is invalid. Email not sent")
+		return False
 
 	else:
 		
@@ -52,14 +54,14 @@ Just wanted to confirm that your ticket has been successfully created. Here are 
 Event Name:		%s
 Start Date:		%s
 End Date:		%s
-Event Venue:	        %s
+Event Venue:	%s
 
 Your ticket ID is %d and was created on %s
 
 Regards,
 Ticket Service Team
 
-        ''' %(event_name, event_start_date, event_end_date, event_venue, ticket_ID, ticket_time_stamp)
+        ''' %(event_name, unix_to_readable(event_start_date), unix_to_readable(event_end_date), event_venue, ticket_ID, ticket_time_stamp)
 
 		msg.attach(MIMEText(body, 'plain'))
 		 
@@ -69,4 +71,4 @@ Ticket Service Team
 		text = msg.as_string()
 		server.sendmail(fromaddr, toaddr, text)
 		server.quit()
-		
+		return True

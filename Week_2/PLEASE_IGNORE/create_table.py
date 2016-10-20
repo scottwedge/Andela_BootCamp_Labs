@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('dummy_data.db')
+conn = sqlite3.connect('test_data.db')
 c = conn.cursor()
 
 c.execute("CREATE TABLE IF NOT EXISTS events (event_ID INTEGER PRIMARY KEY AUTOINCREMENT, event_name TEXT, event_start_date REAL, event_end_date REAL, event_venue TEXT)")

@@ -23,12 +23,17 @@ def create_event(name, start_date, end_date, venue):
 def view_all_events():
 	c.execute("SELECT * FROM events")
 	events_data = c.fetchall()
-	print('Event ID\tName\t\t\tStart Date\tEnd Date\tVenue')
+	spacing = 0
+	print('Event ID\tName\t\t\t\tStart Date\tEnd Date\tVenue')
 	for row in events_data:
-		if len(row[1])>15:
+		if len(row[1])>21:
 			print(str(row[0]) + '\t\t' + row[1] + '\t' + unix_to_readable(row[2]) + '\t' + unix_to_readable(row[3]) + '\t' + row[4])
-		else:		
+		elif len(row[1])>15:
 			print(str(row[0]) + '\t\t' + row[1] + '\t\t' + unix_to_readable(row[2]) + '\t' + unix_to_readable(row[3]) + '\t' + row[4])
+		elif len(row[1])<8:
+			print(str(row[0]) + '\t\t' + row[1] + '\t\t\t\t' + unix_to_readable(row[2]) + '\t' + unix_to_readable(row[3]) + '\t' + row[4])
+		else:		
+			print(str(row[0]) + '\t\t' + row[1] + '\t\t\t' + unix_to_readable(row[2]) + '\t' + unix_to_readable(row[3]) + '\t' + row[4])
 
 	return True
 		

@@ -107,8 +107,9 @@ def invalidate_ticket(ticket_ID):
 		if status == True:
 			user_response = input("Would you like to invalidate this ticket? Enter 'Y' to confirm or any other key to cancel: ").lower()
 			if user_response == 'y':
-				c.execute ("UPDATE ticket SET ticket_status = 0 WHERE ticket_ID = ?", (ticket_ID,))
-				print ("Ticket ID no.%d is now invalid" (ticket_ID))
+				c.execute ("UPDATE tickets SET ticket_status = 0 WHERE ticket_ID = ?", (int(ticket_ID),))
+				conn.commit()
+				print ("Ticket ID no.%d is now invalid" %(ticket_ID))
 
 			else:
 				print ("No changes have been to the ticket.")

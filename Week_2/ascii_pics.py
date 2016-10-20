@@ -1,8 +1,5 @@
-import colorama
-
-
 def intro_pic():
-  print(colorama.Fore.YELLOW + '''
+  print('''
 
  /$$$$$$$$ /$$           /$$                   /$$     /$$                            /$$$$$$                     
 |__  $$__/|__/          | $$                  | $$    |__/                           /$$__  $$                    
@@ -17,7 +14,7 @@ def intro_pic():
                                                                      \______/                  \______/          
 
   ''')
-  print(colorama.Style.RESET_ALL)
+ 
   
 
 

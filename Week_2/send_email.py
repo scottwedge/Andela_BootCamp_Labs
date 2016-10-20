@@ -1,4 +1,3 @@
-
 import email, smtplib, sqlite3, time, datetime
 from unix_time_conversions import unix_to_readable, readable_to_unix
 from email.mime.multipart import MIMEMultipart

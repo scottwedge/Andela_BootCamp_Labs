@@ -4,16 +4,13 @@ from ticket_functions import generate_ticket, view_tickets_for_event, invalidate
 from ascii_pics import intro_pic, outro_pic
 from unix_time_conversions import unix_to_readable, readable_to_unix
 from send_email import send_initial_email
-import colorama
 import sqlite3
 
-colorama.init()
 
 conn = sqlite3.connect('dummy_data.db')
 c = conn.cursor()
 
-print(colorama.Fore.GREEN, colorama.Back.WHITE +"\t\t\t\t\t\tWelcome to the Ticket Booking Service\t\t\t\t\t")
-print(colorama.Style.RESET_ALL)
+print("\t\t\t\t\t\tWelcome to the Ticket Booking Service\t\t\t\t\t")
 intro_pic()
 
 
@@ -157,11 +154,14 @@ while True:
 				Type 'Y' if you want to update or any other key to cancel: ").lower()
 			if response == 'y':
 				c.execute("UPDATE events SET email_address = ? WHERE ticket_ID = ?", (email_address, ticket_ID))
+				conn.commit()
 				print ("Ticket updated")
 
 
 	elif 'ticket invalidate' in user_input:
+		# Splits up users input
 		instr_list = user_input.split(' ')
+		# Checks to see that user provided ticket ID
 		if len(instr_list)>=3:
 			ticket_ID = instr_list[2]
 			try:
@@ -169,6 +169,7 @@ while True:
 			except ValueError:
 				print ("Sorry. Value provided after 'ticket invalidate' not a valid ticket ID")
 		else:
+			# Asks for ticket ID if not found in instruction
 			print ('Could not find ticket ID instruction to list all tickets')
 			response = input ("Please enter ticket ID. Or type 'X' to cancel: ").lower()
 			if response == 'x':
@@ -180,11 +181,10 @@ while True:
 					print ("Sorry. That value can not be used as an ticket ID")
 
 	else:
-		print(colorama.Fore.RED, colorama.Back.YELLOW + "Sorry, that instruction could not be understood. Please try again")
-		print(colorama.Style.RESET_ALL)
+		print("Sorry, that instruction could not be understood. Please try again")
+		
 
 conn.close()
 print("Exiting. Thank you for using the ticketing app")
-colorama.deinit()
 outro_pic()
 
